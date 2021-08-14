@@ -1,5 +1,7 @@
 // Select relevant HTML elements
-var bar = d3.select("#bar")
+var bar = d3.select("#bar");
+var gauge = d3.select("#gauge");
+var bubble = d3.select("#bubble");
 
 // Read belly button data
 d3.json("../data/samples.json").then((data) => {
@@ -17,6 +19,14 @@ d3.json("../data/samples.json").then((data) => {
     console.log(otu_ids);
     console.log(values);
     
-});
+    d3.select("#selDataset").selectAll("option").data(names)
+    .enter()
+    .append("option")
+    .text(function(d) {
+        return d;
+    });
 
-var selection = d3.select("#selDataset").property("value")
+    var input = d3.select("#selDataset").property("value");
+
+    input.on("change", refresh());
+});
