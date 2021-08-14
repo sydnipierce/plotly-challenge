@@ -18,6 +18,8 @@ d3.json("../data/samples.json").then((data) => {
     var values = samples.map(x => x.sample_values);
     console.log(otu_ids);
     console.log(values);
+
+    trace1 = 
     
     d3.select("#selDataset").selectAll("option").data(names)
     .enter()
@@ -29,4 +31,9 @@ d3.json("../data/samples.json").then((data) => {
     var input = d3.select("#selDataset").property("value");
 
     input.on("change", refresh());
+
+    function refresh() {
+        plotly.(bar, trace1);
+        plotly.
+    };
 });
