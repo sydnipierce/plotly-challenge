@@ -21,60 +21,65 @@ d3.json("../data/samples.json").then((data) => {
     console.log(otu_ids);
     console.log(values);
 
-    // Initialize charts
-    function init() {
-        data = [{
-          x: [1, 2, 3, 4, 5],
-          y: [1, 2, 4, 8, 16] }];
+    // // Initialize charts
+    // function init() {
+    //     data = [{
+    //       x: [1, 2, 3, 4, 5],
+    //       y: [1, 2, 4, 8, 16] }];
 
-        // var bardata = [trace1];
-        // var gaugedata = [trace2];
-        // var bubbledata = [trace3];
+    //     var id = names[0];
+    //     var ethnicity = metadata[0].ethnicity;
+    //     var gender = metadata[0].gender;
+    //     var age = metadata[0].age;
+    //     var location = metadata[0].location;
+    //     var bbtype = metadata[0].bbtype;
+    //     var wfreq = metadata[0].wfreq;
+    //     var bartrace = ;
+    //     var gaugetrace = ;
+    //     var bubbletrace = ;
       
-        Plotly.newPlot("plot", data);
-      };
+    //     Plotly.newPlot("plot", data);
+    //   };
     
-    // Populate dropdown with IDs
-    d3.select("#selDataset").selectAll("option").data(names)
-    .enter()
-    .append("option")
-    .text(function(d) {
-        return d;
-    });
+    // // Populate dropdown with IDs
+    // d3.select("#selDataset").selectAll("option").data(names)
+    // .enter()
+    // .append("option")
+    // .text(function(d) {
+    //     return d;
+    // });
 
-    // Create event listener
-    d3.select("#selDataset").on("change", refresh());
+    // // Create event listener
+    // d3.select("#selDataset").on("change", refresh());
 
-    // Define function (chart update) for event listener
-    function refresh() {
-        // Collect ID selected by user
-        var input = d3.select("#selDataset").property("value");
-
-        // Create x and y arrays for bar chart
-        var x = [];
-        var y = [];
-
-        for 
-            if (input === 'names[i]') {
-                x = [1, 2, 3, 4, 5];
-                y = [1, 2, 4, 8, 16];
-            }
-
-            else if (dataset === 'dataset2') {
-                x = [10, 20, 30, 40, 50];
-                y = [1, 10, 100, 1000, 10000];
-            }
-        
-        // Note the extra brackets around 'x' and 'y'
-        Plotly.restyle("plot", "x", [x]);
-        Plotly.restyle("plot", "y", [y]);
-        }
-    };
-
+    // // Define function (chart update) for event listener
     // function refresh() {
-    //     plotly.(bar, trace1);
-    //     plotly.
+    //     // Collect ID selected by user
+    //     var input = d3.select("#selDataset").property("value");
+
+    //     // Create x and y arrays for bar chart
+    //     var x = [];
+    //     var y = [];
+
+    //     for (var i = 0; i < names.length; i++) {
+    //         if (input === names[i]) {
+    //             x = values[i].slice(0, 10);
+    //             y = otu_ids[i].slice(0, 10);
+
+
+    //         };
+    //     };
+        
+    //     // Note the extra brackets around 'x' and 'y'
+    //     Plotly.restyle("plot", "x", [x]);
+    //     Plotly.restyle("plot", "y", [y]);
+    //     }
     // };
 
-    init();
+    // // function refresh() {
+    // //     plotly.(bar, trace1);
+    // //     plotly.
+    // // };
+
+    // init();
 });
