@@ -62,7 +62,7 @@ d3.json("../data/samples.json").then((data) => {
 
         var bublayout = {
             showlegend: false
-        }
+        };
 
         // Create initial chart data
         var bardata = [bartrace];
@@ -83,31 +83,43 @@ d3.json("../data/samples.json").then((data) => {
         return d;
     });
 
-    // // Create event listener
-    // d3.select("#selDataset").on("change", refresh());
+    // Create event listener
+    d3.select("#selDataset").on("change", 
 
-    // // Define function (chart update) for event listener
-    // function refresh() {
-    //     // Collect ID selected by user
-    //     var input = d3.select("#selDataset").property("value");
+    // Define function (chart update) for event listener
+    function refresh() {
+        // Collect ID selected by user
+        var input = d3.select("#selDataset").property("value");
 
-    //     // Create x and y arrays for bar chart
-    //     var x = [];
-    //     var y = [];
+        for (var i = 0; i < names.length; i++) {
+            if (input === names[i]) {
+                meta = metadata[i];
+                val = samples[i].sample_values;
+                iden = otu_ids[i];
+                lab = otu_labels[i];
+                var val_slice = val.slice(0, 10);
+                var iden_slice = iden.slice(0, 10);
+                var lab_slice = lab.slice(0, 10);
 
-    //     for (var i = 0; i < names.length; i++) {
-    //         if (input === names[i]) {
-    //             x = values[i].slice(0, 10);
-    //             y = otu_ids[i].slice(0, 10);
+            var barupdate = {
+                x: val_slice,
+                y: iden_slice,
+                text: lab_slice
+            };
 
+            var bubupdate = {
+                x: iden,
+                y: val,
+                'marker.size': val,
+                'marker.color': iden
+            };
 
-    //         };
-    //     };
-        
-        // Note the extra brackets around 'x' and 'y'
-        // Plotly.restyle("bar", update, 0);
-        // Plotly.restyle("bubble", update, 0);
-    // };
+            Plotly.restyle("bar", barupdate, [0]);
+            Plotly.restyle("bubble", bubupdate, [0]);
+            };
+        };
+    });
 
+    // Initialize the page
     init();
 });
