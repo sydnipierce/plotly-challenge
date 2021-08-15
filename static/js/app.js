@@ -47,7 +47,8 @@ d3.json("../data/samples.json").then((data) => {
             y: val,
             mode: 'markers',
             marker: {
-                size: val
+                size: val,
+                color: iden
             }
         };
 
@@ -59,12 +60,16 @@ d3.json("../data/samples.json").then((data) => {
             }
         };
 
+        var bublayout = {
+            showlegend: false
+        }
+
         // Create initial chart data
         var bardata = [bartrace];
         var bubdata = [bubtrace];
       
         Plotly.newPlot("bar", bardata, barlayout);
-        // Plotly.newPlot("bubble", bubdata, bublayout);
+        Plotly.newPlot("bubble", bubdata, bublayout);
         // Plotly.newPlot("gauge", gaugedata, gaugelayout);
 
         // d3.select("#sample-metadata").html('<p>ID: ${id}</p><p>ETHNICITY: ${ethnicity}</p><p>GENDER: ${gender}</p><p>AGE: ${age}</p><p>LOCATION: ${location}</p><p>BBTYPE: ${bbtype}</p><p>WFREQ: ${wfreq}</p>');
@@ -100,13 +105,8 @@ d3.json("../data/samples.json").then((data) => {
     //     };
         
         // Note the extra brackets around 'x' and 'y'
-        // Plotly.restyle("plot", "x", [x]);
-        // Plotly.restyle("plot", "y", [y]);
-    // };
-
-    // function refresh() {
-    //     plotly.(bar, trace1);
-    //     plotly.
+        // Plotly.restyle("bar", update, 0);
+        // Plotly.restyle("bubble", update, 0);
     // };
 
     init();
