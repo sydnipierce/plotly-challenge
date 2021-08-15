@@ -1,8 +1,3 @@
-// Select relevant HTML elements
-var bar = d3.select("#bar");
-var gauge = d3.select("#gauge");
-var bubble = d3.select("#bubble");
-
 // Read belly button data
 d3.json("../data/samples.json").then((data) => {
     // console.log(data)
@@ -17,37 +12,43 @@ d3.json("../data/samples.json").then((data) => {
 
     var otu_ids = samples.map(x => x.otu_ids);
     var otu_labels = samples.map(x => x.otu_labels);
-    var values = samples.map(x => x.sample_values);
     console.log(otu_ids);
-    console.log(values);
 
-    // // Initialize charts
-    // function init() {
-    //     data = [{
-    //       x: [1, 2, 3, 4, 5],
-    //       y: [1, 2, 4, 8, 16] }];
+    // Initialize charts
+    function init() {
+        // Create initial chart variables
+        var id = names[0];
+        var ethnicity = metadata[0].ethnicity;
+        var gender = metadata[0].gender;
+        var age = metadata[0].age;
+        var location = metadata[0].location;
+        var bbtype = metadata[0].bbtype;
+        var wfreq = metadata[0].wfreq;
+        var barx = samples[0].sample_values.slice(0, 10);
+        var bary = otu_ids[0].slice(0, 10);
+        var barhov = otu_labels[0].slice(0, 10);
 
-    //     var id = names[0];
-    //     var ethnicity = metadata[0].ethnicity;
-    //     var gender = metadata[0].gender;
-    //     var age = metadata[0].age;
-    //     var location = metadata[0].location;
-    //     var bbtype = metadata[0].bbtype;
-    //     var wfreq = metadata[0].wfreq;
-    //     var bartrace = ;
-    //     var gaugetrace = ;
-    //     var bubbletrace = ;
+        // Create initial chart traces
+        var bartrace = {
+            type: 'bar',
+            x: barx,
+            y: bary,
+            orientation: 'h'
+        };
+
+        // Create initial chart data
+        var bardata = [bartrace];
       
-    //     Plotly.newPlot("plot", data);
-    //   };
+        Plotly.newPlot("bar", bardata);
+      };
     
-    // // Populate dropdown with IDs
-    // d3.select("#selDataset").selectAll("option").data(names)
-    // .enter()
-    // .append("option")
-    // .text(function(d) {
-    //     return d;
-    // });
+    // Populate dropdown with IDs
+    d3.select("#selDataset").selectAll("option").data(names)
+    .enter()
+    .append("option")
+    .text(function(d) {
+        return d;
+    });
 
     // // Create event listener
     // d3.select("#selDataset").on("change", refresh());
@@ -70,16 +71,15 @@ d3.json("../data/samples.json").then((data) => {
     //         };
     //     };
         
-    //     // Note the extra brackets around 'x' and 'y'
-    //     Plotly.restyle("plot", "x", [x]);
-    //     Plotly.restyle("plot", "y", [y]);
-    //     }
+        // Note the extra brackets around 'x' and 'y'
+        // Plotly.restyle("plot", "x", [x]);
+        // Plotly.restyle("plot", "y", [y]);
     // };
 
-    // // function refresh() {
-    // //     plotly.(bar, trace1);
-    // //     plotly.
-    // // };
+    // function refresh() {
+    //     plotly.(bar, trace1);
+    //     plotly.
+    // };
 
-    // init();
+    init();
 });
