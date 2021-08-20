@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../Butler/but-virt-data-pt-03-2021-u-c/01-Lesson-Plans/15-Interactive-Visualizations-and-Dashboards"
+		},
+		{
+			"path": "../../../../Butler/but-virt-data-pt-03-2021-u-c/01-Lesson-Plans/14-Intro-To-JavaScript"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "plotly-challenge"
+	}
+}

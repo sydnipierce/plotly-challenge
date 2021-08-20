@@ -22,16 +22,46 @@ d3.json("../data/samples.json").then((data) => {
         var iden = otu_ids[0];
         var lab = otu_labels[0];
 
-        // Populate dropdown with IDs
-        Object.entries(meta).forEach(([key, value]) => {
-            // Log the key and value
-            d3.select("#sample-metadata").select("p")
-            .data([key, value])
-            .enter()
-            .append("p")
-            .text(function(d) {return d.key, d.value;});
-            // console.log(`Key: ${key} and Value ${value}`)
-        });
+        // // Populate metadata box (DOESN'T WORK)
+        // Object.entries(meta).forEach(([key, value]) => {
+        //     // Log the key and value
+        //     d3.select("#sample-metadata").select("p")
+        //     .data([key, value])
+        //     .enter()
+        //     .append("p")
+        //     .text(function(d) {return d.key, d.value;});
+        //     // console.log(`Key: ${key} and Value ${value}`)
+        // });
+
+        // Populate metadata box
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "ID: " + meta.id});
+
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "Ethnicity: " + meta.ethnicity});
+
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "Gender: " + meta.gender});
+
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "Age: " + meta.age});
+
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "Location: " + meta.location});
+
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "bbtype: " + meta.bbtype});
+
+        d3.select("#sample-metadata").append("p")
+            .text(function() {
+                return "wfreq: " + meta.wfreq});
+        
 
         // Create initial chart traces
         var bartrace = {
@@ -101,21 +131,73 @@ d3.json("../data/samples.json").then((data) => {
                 var iden_slice = iden.slice(0, 10);
                 var lab_slice = lab.slice(0, 10);
 
-            var barupdate = {
-                x: val_slice,
-                y: iden_slice,
-                text: lab_slice
-            };
+                // Populate metadata box
+                d3.select("#sample-metadata").html("");
 
-            var bubupdate = {
-                x: iden,
-                y: val,
-                'marker.size': val,
-                'marker.color': iden
-            };
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                    return "ID: " + meta.id});
 
-            Plotly.restyle("bar", barupdate, [0]);
-            Plotly.restyle("bubble", bubupdate, [0]);
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                        return "Ethnicity: " + meta.ethnicity});
+
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                        return "Gender: " + meta.gender});
+
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                        return "Age: " + meta.age});
+
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                        return "Location: " + meta.location});
+
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                        return "bbtype: " + meta.bbtype});
+
+                d3.select("#sample-metadata").append("p")
+                    .text(function() {
+                        return "wfreq: " + meta.wfreq});
+
+                var bartrace = {
+                    type: 'bar',
+                    x: val_slice,
+                    y: iden_slice,
+                    text: lab_slice,
+                    orientation: 'h'
+                };
+
+                var bubtrace = {
+                    x: iden,
+                    y: val,
+                    mode: 'markers',
+                    marker: {
+                        size: val,
+                        color: iden
+                    }
+                };
+        
+                // Create initial layouts
+                var barlayout = {
+                    yaxis: {
+                        type: 'category',
+                        title: 'OTU ID'
+                    }
+                };
+        
+                var bublayout = {
+                    showlegend: false
+                };
+        
+                // Create initial chart data
+                var bardata = [bartrace];
+                var bubdata = [bubtrace];
+
+                Plotly.newPlot("bar", bardata, barlayout);
+                Plotly.newPlot("bubble", bubdata, bublayout);
             };
         };
     });
