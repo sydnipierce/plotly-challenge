@@ -76,6 +76,7 @@ d3.json("../data/samples.json").then((data) => {
             x: iden,
             y: val,
             mode: 'markers',
+            text: lab,
             marker: {
                 size: val,
                 color: iden
@@ -87,17 +88,29 @@ d3.json("../data/samples.json").then((data) => {
             yaxis: {
                 type: 'category',
                 title: 'OTU ID'
-            }
+            },
+            xaxis: {
+                title: 'Microbe Value'
+            },
+            title: 'Top 10 OTUs Present'
         };
 
         var bublayout = {
-            showlegend: false
+            showlegend: false,
+            xaxis: {
+                title: 'OTU ID'
+            },
+            yaxis: {
+                title: 'Microbe Value'
+            },
+            title: 'All OTUs Present'
         };
 
         // Create initial chart data
         var bardata = [bartrace];
         var bubdata = [bubtrace];
       
+        // Create initial plots
         Plotly.newPlot("bar", bardata, barlayout);
         Plotly.newPlot("bubble", bubdata, bublayout);
         // Plotly.newPlot("gauge", gaugedata, gaugelayout);
@@ -121,6 +134,7 @@ d3.json("../data/samples.json").then((data) => {
         // Collect ID selected by user
         var input = d3.select("#selDataset").property("value");
 
+        // Populate data by id selected
         for (var i = 0; i < names.length; i++) {
             if (input === names[i]) {
                 meta = metadata[i];
@@ -162,6 +176,7 @@ d3.json("../data/samples.json").then((data) => {
                     .text(function() {
                         return "wfreq: " + meta.wfreq});
 
+                // Create traces
                 var bartrace = {
                     type: 'bar',
                     x: val_slice,
@@ -174,28 +189,41 @@ d3.json("../data/samples.json").then((data) => {
                     x: iden,
                     y: val,
                     mode: 'markers',
+                    text: lab,
                     marker: {
                         size: val,
                         color: iden
                     }
                 };
         
-                // Create initial layouts
+                // Create layouts
                 var barlayout = {
                     yaxis: {
                         type: 'category',
                         title: 'OTU ID'
-                    }
+                    },
+                    xaxis: {
+                        title: 'Microbe Value'
+                    },
+                    title: 'Top 10 OTUs Present'
                 };
         
                 var bublayout = {
-                    showlegend: false
+                    showlegend: false,
+                    xaxis: {
+                        title: 'OTU ID'
+                    },
+                    yaxis: {
+                        title: 'Microbe Value'
+                    },
+                    title: 'All OTUs Present'
                 };
         
-                // Create initial chart data
+                // Create chart data
                 var bardata = [bartrace];
                 var bubdata = [bubtrace];
 
+                // Create new charts
                 Plotly.newPlot("bar", bardata, barlayout);
                 Plotly.newPlot("bubble", bubdata, bublayout);
             };
